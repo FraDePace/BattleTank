@@ -46,11 +46,17 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 		StartLocation,
 		HitLocation,
 		LaunchSpeed,
-		ESuggestProjVelocityTraceOption::DoNotTrace);
+		false,
+		0,
+		0,
+		ESuggestProjVelocityTraceOption::DoNotTrace); //The last parameter must be to avoid bugs
+
+
 
 	if (bHaveAimSolution) //Calculate the OutLaunchVelocity
 	{
-		auto AimDirection = OutLaunchVelocity.GetSafeNormal();  //unit vector
+		auto AimDirection = OutLaunchVelocity.GetSafeNormal();  //GetSafeNormal(), this method provides a vector of the same direction but unit length. 
+																//If the vector you provide is too short you'll get (0,0,0) back.
 		MoveBarrelTowards(AimDirection);
 		auto Time = GetWorld()->GetTimeSeconds();
 		UE_LOG(LogTemp, Warning, TEXT("%f, Find aim solution"), Time);
@@ -74,11 +80,13 @@ void UTankAimingComponent::SetBarrelReference(UTankBarrel * BarrelToSet)
 void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 {
 	//Work-out didderence between current barrel rotation and AimDirection
-	auto BarrelRotation = Barrel->GetForwardVector().Rotation();
+	auto BarrelRotation = Barrel->GetForwardVector().Rotation();  //Esempio: FVector(1.0, 1.0, 0) ----> FRotator = Pitch = 0, Roll = 0, Yaw = 0.
+																  //A vector that points equally down the X and Y axis is "Yawed" by 45 degrees clockwise as seen from above.
+																  //Note Roll may be null as we have said nothing about Roll so it can't be inferred (we're pointing the arrow not rotating it when we create the FVector)
 	auto AimAsRotator = AimDirection.Rotation();
 	auto DeltaRotator = AimAsRotator - BarrelRotation;
 
-	Barrel->Elevate(5);
+	Barrel->Elevate(DeltaRotator.Pitch);
 
 }
 

@@ -2,11 +2,12 @@
 
 #pragma once
 
-#include "TankAimingComponent.h"
+
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
 
 class UTankBarrel;
+class UTankAimingComponent;
 
 UCLASS()
 class BATTLETANK_API ATank : public APawn
@@ -16,7 +17,7 @@ class BATTLETANK_API ATank : public APawn
 public:
 	void AimAt(FVector HitLocation);
 
-	UFUNCTION(BlueprintCallable, Category = Setup)
+	UFUNCTION(BlueprintCallable, Category = Setup)  //BlueprintCallable, makes it possible to call aC++ function from Blueprint
 	void SetBarrelReference(UTankBarrel* BarrelToSet);
 
 protected:
