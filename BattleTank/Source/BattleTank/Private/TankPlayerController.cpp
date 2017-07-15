@@ -80,12 +80,12 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
 
 bool ATankPlayerController::GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const
 {
-	FVector WorldLocation;  //The world direction
+	FVector CameraWorldLocation;  //The world direction
 	
 	return DeprojectScreenPositionToWorld(
 		ScreenLocation.X, 
 		ScreenLocation.Y, 
-		WorldLocation, 
+		CameraWorldLocation,
 		LookDirection);
 
 	
