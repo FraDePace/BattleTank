@@ -59,12 +59,12 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 																//If the vector you provide is too short you'll get (0,0,0) back.
 		MoveBarrelTowards(AimDirection);
 		auto Time = GetWorld()->GetTimeSeconds();
-		UE_LOG(LogTemp, Warning, TEXT("%f, Find aim solution"), Time);
+		//UE_LOG(LogTemp, Warning, TEXT("%f, Find aim solution"), Time);
 	}
 	else  //No solution
 	{
 		auto Time = GetWorld()->GetTimeSeconds();
-		UE_LOG(LogTemp, Warning, TEXT("%f, No aim solution"), Time);
+		//UE_LOG(LogTemp, Warning, TEXT("%f, No aim solution"), Time);
 	}
 
 

@@ -48,7 +48,7 @@ void ATankPlayerController::AimTowardsCrossAir()
 	FVector HitLocation; // Out parameter
 	if (GetSightRayHitLocation(HitLocation))  //It is going to line trace
 	{
-		
+		//UE_LOG(LogTemp, Warning, TEXT("HitLocation: %s"), *HitLocation.ToString());
 		// Tell controlled tank to aim at this points
 		GetControlledTank()->AimAt(HitLocation);
 	}
@@ -82,6 +82,7 @@ bool ATankPlayerController::GetLookDirection(FVector2D ScreenLocation, FVector& 
 {
 	FVector CameraWorldLocation;  //The world direction
 	
+	//Convert current mouse 2D position to World Space 3D position and direction. Returns false if unable to determine value.
 	return DeprojectScreenPositionToWorld(
 		ScreenLocation.X, 
 		ScreenLocation.Y, 
@@ -97,7 +98,8 @@ bool ATankPlayerController::GetLookVectorHitLocation(FVector LookDirection, FVec
 	auto StartLocation = PlayerCameraManager->GetCameraLocation();     //Partiamo dalla camera
 	auto EndLocation = StartLocation + LookDirection * LineTraceRange;
 	//If line trace Succeeds
-	if (GetWorld()->LineTraceSingleByChannel(
+	if (GetWorld()->LineTraceSingleByChannel(   //Trace a ray against the world using a specific channel and return the first blocking hit
+												//TRUE if a blocking hit is found
 			HitResult,
 			StartLocation,
 			EndLocation,
