@@ -7,6 +7,8 @@
 
 void UTankBarrel::Elevate(float RelativeSpeed)
 {
+	//Takes the current time
+	auto Time = GetWorld()->GetRealTimeSeconds();
 	
 	//Move the barrel the right amount this frame
 	//Given a max elevation and the frame time

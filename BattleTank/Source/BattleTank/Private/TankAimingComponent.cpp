@@ -84,11 +84,11 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 	auto BarrelRotation = Barrel->GetForwardVector().Rotation();  //Esempio: FVector(1.0, 1.0, 0) ----> FRotator = Pitch = 0, Roll = 0, Yaw = 0.
 																  //A vector that points equally down the X and Y axis is "Yawed" by 45 degrees clockwise as seen from above.
 																  //Note Roll may be null as we have said nothing about Roll so it can't be inferred (we're pointing the arrow not rotating it when we create the FVector)
-	UE_LOG(LogTemp, Warning, TEXT("%s BarrelRotation.Rotation: %s"), *GetOwner()->GetName(), *BarrelRotation.ToString());
+	//UE_LOG(LogTemp, Warning, TEXT("%s BarrelRotation.Rotation: %s"), *GetOwner()->GetName(), *BarrelRotation.ToString());
 	auto AimAsRotator = AimDirection.Rotation();
-	UE_LOG(LogTemp, Warning, TEXT("%s AimAsRotator.Rotation: %s"), *GetOwner()->GetName(),*AimAsRotator.ToString());
+	//UE_LOG(LogTemp, Warning, TEXT("%s AimAsRotator.Rotation: %s"), *GetOwner()->GetName(),*AimAsRotator.ToString());
 	auto DeltaRotator = AimAsRotator - BarrelRotation;
-	UE_LOG(LogTemp, Warning, TEXT("%s DeltaRotator: %s"), *GetOwner()->GetName(), *DeltaRotator.ToString());
+	//UE_LOG(LogTemp, Warning, TEXT("%s DeltaRotator: %s"), *GetOwner()->GetName(), *DeltaRotator.ToString());
 	Barrel->Elevate(DeltaRotator.Pitch);
 
 }
