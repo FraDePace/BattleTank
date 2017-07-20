@@ -8,6 +8,8 @@
 
 class UTankBarrel;
 class UTankAimingComponent;
+class UTankTurret;
+
 
 UCLASS()
 class BATTLETANK_API ATank : public APawn
@@ -19,6 +21,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = Setup)  //BlueprintCallable, makes it possible to call aC++ function from Blueprint
 	void SetBarrelReference(UTankBarrel* BarrelToSet);
+
+	UFUNCTION(BlueprintCallable, Category = Setup)  //BlueprintCallable, makes it possible to call aC++ function from Blueprint
+	void SetTurretReference(UTankTurret* TurretToSet);
 
 protected:
 	// Called when the game starts or when spawned
