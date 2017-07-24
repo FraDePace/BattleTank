@@ -3,6 +3,7 @@
 
 #include "BattleTank.h"
 #include "TankBarrel.h"
+#include "TankTurret.h"
 #include "TankAimingComponent.h"
 
 
@@ -59,6 +60,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();  //GetSafeNormal(), this method provides a vector of the same direction but unit length. 
 																//If the vector you provide is too short you'll get (0,0,0) back.
 		MoveBarrelTowards(AimDirection);
+		RotateTurretTowards(AimDirection);
 		//auto Time = GetWorld()->GetTimeSeconds();
 		//UE_LOG(LogTemp, Warning, TEXT("%f, Find aim solution"), Time);
 	}
@@ -96,5 +98,19 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 	//UE_LOG(LogTemp, Warning, TEXT("%s DeltaRotator: %s"), *GetOwner()->GetName(), *DeltaRotator.ToString());
 	Barrel->Elevate(DeltaRotator.Pitch);
 
+}
+
+void UTankAimingComponent::RotateTurretTowards(FVector Rotation)
+{
+
+
+	//UE_LOG(LogTemp, Warning, TEXT("Turret: %s"), *Turret->GetName());
+	auto TurretRotation = Turret->GetForwardVector().Rotation();
+	
+	auto RotationasRotator = Rotation.Rotation();
+	//UE_LOG(LogTemp, Warning, TEXT("%s AimAsRotator.Rotation: %s"), *GetOwner()->GetName(),*AimAsRotator.ToString());
+	auto DeltaRotator = RotationasRotator - TurretRotation;
+	//UE_LOG(LogTemp, Warning, TEXT("%s DeltaRotator: %s"), *GetOwner()->GetName(), *DeltaRotator.ToString());
+	Turret->Rotate(DeltaRotator.Yaw);
 }
 

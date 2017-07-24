@@ -5,6 +5,7 @@
 
 void UTankTurret::Rotate(float r)
 {
+	//UE_LOG(LogTemp, Warning, TEXT("%s DeltaRotator: %s"), *GetOwner()->GetName(), r);
 	SetRelativeRotation(FRotator(0, r, 0));
 }
 

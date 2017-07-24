@@ -22,7 +22,8 @@ private:
 
 	UTankTurret* Turret = nullptr;
 
-	void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection);
+	void MoveBarrelTowards(FVector AimDirection);
+	void RotateTurretTowards(FVector Rotation);
 
 protected:
 	// Called when the game starts
