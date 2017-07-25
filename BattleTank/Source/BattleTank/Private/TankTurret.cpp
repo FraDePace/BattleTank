@@ -3,10 +3,16 @@
 #include "BattleTank.h"
 #include "TankTurret.h"
 
-void UTankTurret::Rotate(float r)
+void UTankTurret::Rotate(float RelativeSpeed)
 {
 	//UE_LOG(LogTemp, Warning, TEXT("%s DeltaRotator: %s"), *GetOwner()->GetName(), r);
-	SetRelativeRotation(FRotator(0, r, 0));
+	RelativeSpeed = FMath::Clamp<float>(RelativeSpeed, -1, +1);
+	auto RotationChange = RelativeSpeed * MaxDegreesPerSecond * GetWorld()->DeltaTimeSeconds; //frame rate independent
+	auto RawNewRotation = RelativeRotation.Yaw + RotationChange;  //RelativeRotation.Pitch rotazione Pitch dello Static mesh
+	
+	//UE_LOG(LogTemp, Warning, TEXT("RawNewElevation: %f"), RawNewElevation);
+
+	SetRelativeRotation(FRotator(0, RawNewRotation, 0));
 }
 
 
