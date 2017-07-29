@@ -25,6 +25,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Setup)  //BlueprintCallable, makes it possible to call aC++ function from Blueprint
 	void SetTurretReference(UTankTurret* TurretToSet);
 
+	UFUNCTION(BlueprintCallable)
+	void Fire();
+
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
