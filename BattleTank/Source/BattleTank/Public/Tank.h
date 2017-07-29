@@ -9,6 +9,7 @@
 class UTankBarrel;
 class UTankAimingComponent;
 class UTankTurret;
+class AProjectile;
 
 
 UCLASS()
@@ -41,12 +42,15 @@ private:
 	// Sets default values for this pawn's properties
 	ATank();
 
-
-
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UPROPERTY(EditAnywhere, Category = "Firing")
 	float LaunchSpeed = 100000; //1000 m/s TODO find sensible default
-	
+
+	UPROPERTY(EditAnywhere, Category = Setup)
+	TSubclassOf<AProjectile> ProjectileBlueprint; //Alternative https://docs.unrealengine.com/latest/INT/Programming/UnrealArchitecture/TSubclassOf/
+
+	//Local Barrel reference for spawning projectile
+	UTankBarrel* Barrel = nullptr;
 };
