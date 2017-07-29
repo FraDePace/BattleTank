@@ -26,6 +26,8 @@ void AProjectile::BeginPlay()
 void AProjectile::LaunchProjectile(float Speed)
 {
 	UE_LOG(LogTemp, Warning, TEXT("Fire!"));
+	ProjectileMovement->SetVelocityInLocalSpace(FVector::ForwardVector * Speed); //Questo vettore dovrebbe essere lo stesso del Barrel (vedi "Tank.Fire() ---> in GetSocket prendo la roatazione del Barrel)
+	ProjectileMovement->Activate();
 }
 
 // Called every frame

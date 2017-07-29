@@ -39,7 +39,7 @@ void ATank::Fire()
 		Barrel->GetSocketLocation(FName("Projectile")),
 		Barrel->GetSocketRotation(FName("Projectile")));
 
-	Projectile->LaunchProjectile(LaunchSpeed);
+	Projectile->LaunchProjectile(4000);
 }
 
 // Called when the game starts or when spawned
