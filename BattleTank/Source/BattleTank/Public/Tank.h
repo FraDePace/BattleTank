@@ -45,12 +45,20 @@ private:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UPROPERTY(EditAnywhere, Category = "Firing")
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	float LaunchSpeed = 100000; //1000 m/s TODO find sensible default
 
 	UPROPERTY(EditAnywhere, Category = Setup)
 	TSubclassOf<AProjectile> ProjectileBlueprint; //Alternative https://docs.unrealengine.com/latest/INT/Programming/UnrealArchitecture/TSubclassOf/
 
+	//Limit the fire rate						
+	UPROPERTY(EditDefaultsOnly, Category = Firing)	//EditDefaultsOnly ---> Apparirà solo nel blueprint	//EditAnywhere ---> Questa proprietà apparaira nel blueprint ma anche su ogni istanza del Tank. Posso renderlo custom per ognuno di loro
+	float ReloadTimeInSeconds = 3.0f;
+
 	//Local Barrel reference for spawning projectile
 	UTankBarrel* Barrel = nullptr;
+
+	
+
+	double LastFireTime = 0;
 };
