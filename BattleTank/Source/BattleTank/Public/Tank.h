@@ -8,6 +8,7 @@
 
 class UTankBarrel;
 class UTankAimingComponent;
+class UTankMovementComponent;
 class UTankTurret;
 class AProjectile;
 
@@ -36,9 +37,11 @@ protected:
 
 	UTankAimingComponent* TankAimingComponent = nullptr;
 
+	UPROPERTY(BlueprintReadOnly) //BlueprintReadOnly ---> Propertyreadable from blueprint
+	UTankMovementComponent* TankMovementComponent = nullptr;
+
 private:
 	
-
 	// Sets default values for this pawn's properties
 	ATank();
 
