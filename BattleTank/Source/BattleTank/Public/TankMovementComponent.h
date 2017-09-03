@@ -28,6 +28,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void Initialise(UTankTrack* LeftTrackToSet, UTankTrack* RightTrackToSet);
 
+	//TODO Check best protection, metodo trovato nella classe NavMeshComponent, ne faccio l'override
+	virtual void RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed);
+
 private:
 
 	UTankTrack* LeftTrack = nullptr;
