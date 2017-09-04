@@ -18,9 +18,11 @@ void UTankMovementComponent::RequestDirectMove(const FVector & MoveVelocity, boo
 	
 	auto TankForward = GetOwner()->GetActorForwardVector().GetSafeNormal();   //Vettore che ci dice la direzione in cui sta guardando il tank
 	auto AIForwardIntention = MoveVelocity.GetSafeNormal();  //La direzione che dovrebbe prendere l'AI
-
 	auto ForwardThrow = FVector::DotProduct(TankForward, AIForwardIntention);
+	auto RightThrow = FVector::CrossProduct(TankForward, AIForwardIntention);
+
 	IntendMoveForward(ForwardThrow);
+	IntendTurnRight(RightThrow.Z);
 	//UE_LOG(LogTemp, Warning, TEXT("%s vectoring to %s"), *TankName, *MoveVelocityString);
 }
 
