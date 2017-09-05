@@ -6,6 +6,15 @@
 #include "Components/ActorComponent.h"
 #include "TankAimingComponent.generated.h"
 
+//Enum firing status to change color of th dot
+UENUM()
+enum class EFiringStatus : uint8
+{
+	Reloading,
+	Aiming,
+	Locked
+};
+
 //Forward Declaration
 class UTankBarrel;  
 class UTankTurret;
@@ -17,7 +26,7 @@ class BATTLETANK_API UTankAimingComponent : public UActorComponent
 	GENERATED_BODY()
 
 private:	
-	
+
 	UTankBarrel* Barrel = nullptr;
 
 	UTankTurret* Turret = nullptr;
@@ -29,6 +38,9 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
+	UPROPERTY(BlueprintReadOnly, Category = "State")
+	EFiringStatus FiringState = EFiringStatus::Reloading;
+
 public:	
 	// Sets default values for this component's properties
 	UTankAimingComponent();
@@ -38,8 +50,12 @@ public:
 
 	void AimAt(FVector HitLocation, float LaunchSpeed);
 
-	void SetBarrelReference(UTankBarrel* BarrelToSet);
+	/*void SetBarrelReference(UTankBarrel* BarrelToSet);
 
-	void SetTurretReference(UTankTurret* TurretToSet);
+	void SetTurretReference(UTankTurret* TurretToSet);*/
+
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+	void Initialise(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet);
+
 	
 };

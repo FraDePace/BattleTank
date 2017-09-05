@@ -74,7 +74,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 	
 }
 
-void UTankAimingComponent::SetBarrelReference(UTankBarrel * BarrelToSet)
+/*void UTankAimingComponent::SetBarrelReference(UTankBarrel * BarrelToSet)
 {
 	if (!BarrelToSet) { return; }
 	Barrel = BarrelToSet;
@@ -85,10 +85,21 @@ void UTankAimingComponent::SetTurretReference(UTankTurret * TurretToSet)
 {
 	if (!TurretToSet) { return; }
 	Turret = TurretToSet;
+}*/
+
+void UTankAimingComponent::Initialise(UTankBarrel * BarrelToSet, UTankTurret * TurretToSet)
+{
+	Barrel = BarrelToSet;
+	Turret = TurretToSet;
 }
 
 void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 {
+
+	if (!Barrel || !Turret)
+	{
+		return;
+	}
 	//Work-out didderence between current barrel rotation and AimDirection
 	auto BarrelRotation = Barrel->GetForwardVector().Rotation();  //Esempio: FVector(1.0, 1.0, 0) ----> FRotator = Pitch = 0, Roll = 0, Yaw = 0.
 																  //A vector that points equally down the X and Y axis is "Yawed" by 45 degrees clockwise as seen from above.

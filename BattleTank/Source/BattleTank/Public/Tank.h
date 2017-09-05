@@ -21,20 +21,19 @@ class BATTLETANK_API ATank : public APawn
 public:
 	void AimAt(FVector HitLocation);
 
-	UFUNCTION(BlueprintCallable, Category = Setup)  //BlueprintCallable, makes it possible to call aC++ function from Blueprint
-	void SetBarrelReference(UTankBarrel* BarrelToSet);
+	//BlueprintCallable, makes it possible to call aC++ function from Blueprint
+	/*UFUNCTION(BlueprintCallable, Category = Setup)  
+	void SetBarrelReference(UTankBarrel* BarrelToSet);/*
 
-	UFUNCTION(BlueprintCallable, Category = Setup)  //BlueprintCallable, makes it possible to call aC++ function from Blueprint
-	void SetTurretReference(UTankTurret* TurretToSet);
+	//BlueprintCallable, makes it possible to call aC++ function from Blueprint
+	/*UFUNCTION(BlueprintCallable, Category = Setup)  
+	void SetTurretReference(UTankTurret* TurretToSet);*/
 
 	UFUNCTION(BlueprintCallable)
 	void Fire();
 
-
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
+	
 	UPROPERTY(BlueprintReadOnly) //BlueprintReadOnly ---> Propertyreadable from blueprint
 	UTankAimingComponent* TankAimingComponent = nullptr;
 
@@ -47,7 +46,7 @@ private:
 	ATank();
 
 	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	/*virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;*/
 
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	float LaunchSpeed = 100000; //1000 m/s TODO find sensible default
@@ -61,8 +60,6 @@ private:
 
 	//Local Barrel reference for spawning projectile
 	UTankBarrel* Barrel = nullptr;
-
-	
 
 	double LastFireTime = 0;
 };
