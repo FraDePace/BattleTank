@@ -7,6 +7,15 @@
 #include "Projectile.h"
 #include "Tank.h"
 
+// Called when the game starts
+void ATank::BeginPlay()
+{
+	Super::BeginPlay();
+
+	auto Name = GetName();
+	UE_LOG(LogTemp, Warning, TEXT("%s DONKEY: Tank C++ BeginPlay"), *Name);
+
+}
 
 // Sets default values
 ATank::ATank()
@@ -16,7 +25,9 @@ ATank::ATank()
 
 	// No need to protect pointer as added at construction
 	//TankAimingComponent = CreateDefaultSubobject<UTankAimingComponent>(FName("Aiming Component"));
-	
+	//UE_LOG(LogTemp, Warning, TEXT("%f, Find aim solution"), Time);
+	auto Name = GetName();
+	UE_LOG(LogTemp, Warning, TEXT("%s DONKEY: Tank C++ Construct"), *Name);
 
 }
 
@@ -60,7 +71,7 @@ void ATank::Fire()
 void ATank::AimAt(FVector HitLocation)
 {
 	
-
+	if (!TankAimingComponent) { return; }
 	TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
 }
 

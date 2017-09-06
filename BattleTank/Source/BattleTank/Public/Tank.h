@@ -33,6 +33,9 @@ public:
 	void Fire();
 
 protected:
+
+	// Called when the game starts
+	virtual void BeginPlay() override;
 	
 	UPROPERTY(BlueprintReadOnly) //BlueprintReadOnly ---> Propertyreadable from blueprint
 	UTankAimingComponent* TankAimingComponent = nullptr;
