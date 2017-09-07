@@ -38,7 +38,10 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 
 void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 {
-	if (!ensure(Barrel)) { return; }
+	if (!ensure(Barrel)) { 
+		
+		return; 
+	}
 	FVector OutLaunchVelocity;
 	FVector StartLocation = Barrel->GetSocketLocation(FName("Projectile"));
 	bool bHaveAimSolution = UGameplayStatics::SuggestProjectileVelocity(
@@ -96,7 +99,7 @@ void UTankAimingComponent::Initialise(UTankBarrel * BarrelToSet, UTankTurret * T
 void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 {
 
-	if (!ensure(Barrel && Turret))
+	if (!ensure(Barrel) || !ensure(Turret))
 	{
 		return;
 	}

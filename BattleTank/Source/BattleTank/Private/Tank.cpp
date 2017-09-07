@@ -10,10 +10,7 @@
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
-
-	auto Name = GetName();
-	UE_LOG(LogTemp, Warning, TEXT("%s DONKEY: Tank C++ BeginPlay"), *Name);
-
+	TankAimingComponent = FindComponentByClass<UTankAimingComponent>();
 }
 
 // Sets default values
@@ -24,9 +21,8 @@ ATank::ATank()
 
 	// No need to protect pointer as added at construction
 	//TankAimingComponent = CreateDefaultSubobject<UTankAimingComponent>(FName("Aiming Component"));
-	//UE_LOG(LogTemp, Warning, TEXT("%f, Find aim solution"), Time);
-	auto Name = GetName();
-	UE_LOG(LogTemp, Warning, TEXT("%s DONKEY: Tank C++ Construct"), *Name);
+	
+	
 
 }
 
