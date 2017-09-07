@@ -34,6 +34,9 @@ private:
 	void MoveBarrelTowards(FVector AimDirection);
 	void RotateTurretTowards(FVector Rotation);
 
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
+	float LaunchSpeed = 100000; //1000 m/s TODO find sensible default
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
@@ -48,7 +51,8 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	void AimAt(FVector HitLocation, float LaunchSpeed);
+	//void AimAt(FVector HitLocation, float LaunchSpeed);
+	void AimAt(FVector HitLocation);
 
 	/*void SetBarrelReference(UTankBarrel* BarrelToSet);
 

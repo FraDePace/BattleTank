@@ -9,7 +9,7 @@
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-	auto AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
+	auto AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
 	if (!ensure(AimingComponent))
 	{
 		return;
@@ -29,17 +29,19 @@ void ATankPlayerController::Tick(float DeltaTime)
 	AimTowardsCrossAir();
 }
 
-ATank* ATankPlayerController::GetControlledTank() const
+/*ATank* ATankPlayerController::GetControlledTank() const
 {
 	
 	return Cast<ATank>(GetPawn());
-}
+}*/
 
 void ATankPlayerController::AimTowardsCrossAir()
 {
-	if (!ensure(GetControlledTank()))
+	auto AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
+	if (!ensure(AimingComponent))
 	{
 		return;
+
 	}
 
 	FVector HitLocation; // Out parameter
@@ -47,7 +49,8 @@ void ATankPlayerController::AimTowardsCrossAir()
 	{
 		//UE_LOG(LogTemp, Warning, TEXT("HitLocation: %s"), *HitLocation.ToString());
 		// Tell controlled tank to aim at this points
-		GetControlledTank()->AimAt(HitLocation);
+		AimingComponent->AimAt(HitLocation);
+		
 	}
 	
 	

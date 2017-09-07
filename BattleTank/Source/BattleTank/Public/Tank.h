@@ -7,8 +7,6 @@
 #include "Tank.generated.h"
 
 class UTankBarrel;
-class UTankAimingComponent;
-class UTankTurret;
 class AProjectile;
 
 
@@ -18,7 +16,7 @@ class BATTLETANK_API ATank : public APawn
 	GENERATED_BODY()
 
 public:
-	void AimAt(FVector HitLocation);
+	//void AimAt(FVector HitLocation);
 
 	//BlueprintCallable, makes it possible to call aC++ function from Blueprint
 	/*UFUNCTION(BlueprintCallable, Category = Setup)  
@@ -36,8 +34,8 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 	
-	UPROPERTY(BlueprintReadOnly) //BlueprintReadOnly ---> Propertyreadable from blueprint
-	UTankAimingComponent* TankAimingComponent = nullptr;
+	//UPROPERTY(BlueprintReadOnly) //BlueprintReadOnly ---> Propertyreadable from blueprint
+	//UTankAimingComponent* TankAimingComponent = nullptr;
 
 	//UPROPERTY(BlueprintReadOnly) //BlueprintReadOnly ---> Propertyreadable from blueprint
 	//UTankMovementComponent* TankMovementComponent = nullptr;

@@ -36,7 +36,7 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	// ...
 }
 
-void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
+void UTankAimingComponent::AimAt(FVector HitLocation)
 {
 	if (!ensure(Barrel)) { 
 		
@@ -131,4 +131,5 @@ void UTankAimingComponent::RotateTurretTowards(FVector Rotation)
 	//UE_LOG(LogTemp, Warning, TEXT("%s DeltaRotator: %s"), *GetOwner()->GetName(), *DeltaRotator.ToString());
 	Turret->Rotate(DeltaRotator.Yaw);
 }
+
 
