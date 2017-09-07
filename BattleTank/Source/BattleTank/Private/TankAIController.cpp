@@ -19,7 +19,7 @@ void ATankAIController::Tick(float DeltaTime)
 	auto PlayerTank = Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
 	auto ControlledTank = Cast<ATank>(GetPawn());
 
-	if (PlayerTank) 
+	if (ensure(PlayerTank)) 
 	{
 		//Move towards player
 		MoveToActor(PlayerTank, AcceptanceRadius);  //TODO check radius is in cm, Questo metdo inizia il pathfinding: l'output del pathfinding andrà poi usato come input nel NavMesh (col metodo RequestDirectMove)

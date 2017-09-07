@@ -30,7 +30,7 @@ void UTankMovementComponent::IntendMoveForward(float Throw)
 {
 	/*auto Name = GetName();
 	UE_LOG(LogTemp, Warning, TEXT("Intend to move forward %f"), *Name, Throw);*/
-	if (!LeftTrack || !RightTrack)
+	if (!ensure(LeftTrack && RightTrack))
 	{
 		return;
 	}
@@ -41,7 +41,7 @@ void UTankMovementComponent::IntendMoveForward(float Throw)
 
 void UTankMovementComponent::IntendTurnRight(float Throw)
 {
-	if (!LeftTrack || !RightTrack)
+	if (!ensure(LeftTrack && RightTrack))
 	{
 		return;
 	}
