@@ -17,12 +17,15 @@ public:
 
 	UTankTrack();
 
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	
+
+	void ApplySidewaysForce();
 
 	//Sets a Throttle between -1 and +1
 	UFUNCTION(BlueprintCallable, Category = Input)
 	void SetThrottle(float Throttle);
+
+	void DriveTrack();
 
 	//Max Force per Track in Newtons
 	UPROPERTY(EditDefaultsOnly)
@@ -31,6 +34,8 @@ public:
 private:
 
 	virtual void BeginPlay() override;
+
+	float CurrentThrottle = 0;
 
 	UFUNCTION()  //Metodo per capire quando tocchiamo il terreno 
 	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
