@@ -7,7 +7,7 @@
 
 void ATankAIController::BeginPlay()
 {
-	Super::BeginPlay();
+	Super::BeginPlay(); 
 
 	
 }
