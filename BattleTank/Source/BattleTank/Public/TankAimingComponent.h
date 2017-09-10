@@ -33,7 +33,6 @@ private:
 	UTankTurret* Turret = nullptr;
 
 	void MoveBarrelTowards(FVector AimDirection);
-	void RotateTurretTowards(FVector Rotation);
 
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	float LaunchSpeed = 100000; //1000 m/s TODO find sensible default
@@ -45,6 +44,9 @@ private:
 													  //Limit the fire rate						
 	UPROPERTY(EditDefaultsOnly, Category = Firing)	//EditDefaultsOnly ---> Apparirà solo nel blueprint	//EditAnywhere ---> Questa proprietà apparaira nel blueprint ma anche su ogni istanza del Tank. Posso renderlo custom per ognuno di loro
 	float ReloadTimeInSeconds = 3.0f;
+
+	bool IsBarrelMoving();
+	FVector AimDir;
 
 protected:
 	// Called when the game starts
