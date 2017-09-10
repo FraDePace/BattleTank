@@ -27,4 +27,11 @@ public:
 	//Max Force per Track in Newtons
 	UPROPERTY(EditDefaultsOnly)
 	float TrackMaxdrivingForce = 400000; //Assume 40 tonne tank and 1g acceleration
+
+private:
+
+	virtual void BeginPlay() override;
+
+	UFUNCTION()  //Metodo per capire quando tocchiamo il terreno 
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 };
