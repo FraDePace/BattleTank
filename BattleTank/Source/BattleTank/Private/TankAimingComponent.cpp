@@ -127,7 +127,7 @@ void UTankAimingComponent::Fire()
 			Barrel->GetSocketLocation(FName("Projectile")),
 			Barrel->GetSocketRotation(FName("Projectile")));
 
-		Projectile->LaunchProjectile(4000);
+		Projectile->LaunchProjectile(10000);
 
 		LastFireTime = FPlatformTime::Seconds();
 	}
