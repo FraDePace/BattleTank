@@ -16,15 +16,6 @@ class BATTLETANK_API ATank : public APawn
 	GENERATED_BODY()
 
 public:
-	//void AimAt(FVector HitLocation);
-
-	//BlueprintCallable, makes it possible to call aC++ function from Blueprint
-	/*UFUNCTION(BlueprintCallable, Category = Setup)  
-	void SetBarrelReference(UTankBarrel* BarrelToSet);/*
-
-	//BlueprintCallable, makes it possible to call aC++ function from Blueprint
-	/*UFUNCTION(BlueprintCallable, Category = Setup)  
-	void SetTurretReference(UTankTurret* TurretToSet);*/
 
 	UFUNCTION(BlueprintCallable)
 	void Fire();
@@ -33,20 +24,11 @@ protected:
 
 	// Called when the game starts
 	virtual void BeginPlay() override;
-	
-	//UPROPERTY(BlueprintReadOnly) //BlueprintReadOnly ---> Propertyreadable from blueprint
-	//UTankAimingComponent* TankAimingComponent = nullptr;
-
-	//UPROPERTY(BlueprintReadOnly) //BlueprintReadOnly ---> Propertyreadable from blueprint
-	//UTankMovementComponent* TankMovementComponent = nullptr;
 
 private:
 	
 	// Sets default values for this pawn's properties
 	ATank();
-
-	// Called to bind functionality to input
-	/*virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;*/
 
 	//TODO Remove once Fire method is moved to AiminingComponent
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")

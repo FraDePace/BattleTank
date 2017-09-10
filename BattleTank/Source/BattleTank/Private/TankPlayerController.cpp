@@ -29,14 +29,11 @@ void ATankPlayerController::Tick(float DeltaTime)
 	AimTowardsCrossAir();
 }
 
-/*ATank* ATankPlayerController::GetControlledTank() const
-{
-	
-	return Cast<ATank>(GetPawn());
-}*/
-
 void ATankPlayerController::AimTowardsCrossAir()
 {
+	if (!GetPawn()) {  //Controllo aggiunto per questo bug della funzione Tick: https://issues.unrealengine.com/issue/UE-36929
+		return;
+	}
 	auto AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
 	if (!ensure(AimingComponent))
 	{
@@ -51,11 +48,7 @@ void ATankPlayerController::AimTowardsCrossAir()
 		// Tell controlled tank to aim at this points
 		AimingComponent->AimAt(HitLocation);
 		
-	}
-	
-	
-	
-		
+	}	
 }
 // Get world location if linetrace through crossair
 bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
