@@ -18,6 +18,7 @@ enum class EFiringStatus : uint8
 //Forward Declaration
 class UTankBarrel;  
 class UTankTurret;
+class AProjectile;
 
 //Hold barrel's properties and Elevate method
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -36,6 +37,14 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	float LaunchSpeed = 100000; //1000 m/s TODO find sensible default
+
+	UPROPERTY(EditAnywhere, Category = Setup)
+	TSubclassOf<AProjectile> ProjectileBlueprint; //Alternative https://docs.unrealengine.com/latest/INT/Programming/UnrealArchitecture/TSubclassOf/
+
+	double LastFireTime = 0;
+													  //Limit the fire rate						
+	UPROPERTY(EditDefaultsOnly, Category = Firing)	//EditDefaultsOnly ---> Apparirà solo nel blueprint	//EditAnywhere ---> Questa proprietà apparaira nel blueprint ma anche su ogni istanza del Tank. Posso renderlo custom per ognuno di loro
+	float ReloadTimeInSeconds = 3.0f;
 
 protected:
 	// Called when the game starts
@@ -57,5 +66,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 	void Initialise(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet);
 
-	
+	UFUNCTION(BlueprintCallable)
+	void Fire();
 };
