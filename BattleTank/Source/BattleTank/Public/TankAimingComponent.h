@@ -12,7 +12,8 @@ enum class EFiringStatus : uint8
 {
 	Reloading,
 	Aiming,
-	Locked
+	Locked,
+	OutOfAmmo
 };
 
 //Forward Declaration
@@ -48,6 +49,8 @@ private:
 	bool IsBarrelMoving();
 	FVector AimDir;
 
+	int RoundLeft = 3;
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
@@ -72,4 +75,7 @@ public:
 	void Fire();
 
 	EFiringStatus GetFiringStatus() const;
+
+	UFUNCTION(BlueprintCallable, Category = "Firing")
+	int GetRoundLeft() const;
 };
