@@ -53,7 +53,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(BlueprintReadOnly, Category = "State")
-	EFiringStatus FiringState = EFiringStatus::Locked;
+	EFiringStatus FiringState = EFiringStatus::Reloading;
 
 public:	
 	// Sets default values for this component's properties
@@ -70,4 +70,6 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void Fire();
+
+	EFiringStatus GetFiringStatus() const;
 };
