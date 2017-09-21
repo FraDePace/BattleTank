@@ -49,7 +49,8 @@ private:
 	bool IsBarrelMoving();
 	FVector AimDir;
 
-	int RoundLeft = 3;
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+	int32 RoundLeft = 3;   //int32 è compatibile con tutte le piattaforme
 
 protected:
 	// Called when the game starts
@@ -77,5 +78,5 @@ public:
 	EFiringStatus GetFiringStatus() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Firing")
-	int GetRoundLeft() const;
+	int32 GetRoundLeft() const;
 };

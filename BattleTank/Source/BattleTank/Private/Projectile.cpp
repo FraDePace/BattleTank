@@ -11,9 +11,19 @@ AProjectile::AProjectile()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	CollisionMesh = CreateDefaultSubobject<UStaticMeshComponent>(FName("Collision Mesh"));
+	SetRootComponent(CollisionMesh);
+	CollisionMesh->SetNotifyRigidBodyCollision(true);  //La checkbox (sul blueprint) "Simulation Generate Hit Event" sara checcata di default
+	CollisionMesh->SetVisibility(false); 
+
+	LaunchBlast = CreateDefaultSubobject<UParticleSystemComponent>(FName("Launch Blast"));
+	LaunchBlast->AttachTo(RootComponent); //Parentela con il Root (Collision Mesh)
+
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(FName("Projectile movement"));
 	ProjectileMovement->bAutoActivate = false; //qualcosa con il fly off, bo--- Non "fly off" quando è costruito, lo setteremo quando spariamo?
 
+	
+	
 }
 
 // Called when the game starts or when spawned
