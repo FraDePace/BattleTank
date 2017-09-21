@@ -14,8 +14,6 @@ class BATTLETANK_API AProjectile : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AProjectile();
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 	void LaunchProjectile(float Speed);
 
@@ -34,7 +32,12 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	UParticleSystemComponent* LaunchBlast = nullptr;
-
 	
+	UPROPERTY(VisibleAnywhere)
+	UParticleSystemComponent* ImpactBlast = nullptr;
+
+	UFUNCTION()  //Metodo per capire quando tocchiamo il terreno 
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
+
 	
 };
