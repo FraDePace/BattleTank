@@ -43,11 +43,22 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, U
 	SetRootComponent(ImpactBlast);
 	CollisionMesh->DestroyComponent();
 
+	//Damage Enemy Tank
+	UGameplayStatics::ApplyRadialDamage(    //Applica un danno radiale, ok con esplosione proiettile.
+		this,
+		ProjectileDamage,
+		GetActorLocation(),                //Da dove iniziare il danno
+		ExplosionForce->Radius,         
+		UDamageType::StaticClass(),
+		TArray<AActor*>()   //damage all actors. In automatico verrà chiamato un metodo (se dichiarato) su tutte le calssi che ereditano d AActor, TakeDamage()
+		);
+
 	//Implemento un Timer, quando scade, il Projectile_BP viene distrutto
 	FTimerHandle TimerHandle;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AProjectile::TimeEnd, DestroyDelay, false);
 }
 
+//Chiamato quando finisce il SeTimer()
 void AProjectile::TimeEnd()
 {
 	Destroy();
