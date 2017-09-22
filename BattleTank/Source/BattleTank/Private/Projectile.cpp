@@ -26,7 +26,9 @@ AProjectile::AProjectile()
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(FName("Projectile movement"));
 	ProjectileMovement->bAutoActivate = false; //qualcosa con il fly off, bo--- Non "fly off" quando è costruito, lo setteremo quando spariamo?
 
-	
+	ExplosionForce = CreateDefaultSubobject<URadialForceComponent>(FName("Explosion Force"));
+	ExplosionForce->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
+
 	
 }
 
@@ -34,6 +36,7 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, U
 {
 	LaunchBlast->Deactivate();
 	ImpactBlast->Activate();
+	ExplosionForce->FireImpulse();
 }
 
 // Called when the game starts or when spawned

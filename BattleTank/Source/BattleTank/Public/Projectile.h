@@ -36,6 +36,9 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	UParticleSystemComponent* ImpactBlast = nullptr;
 
+	UPROPERTY(VisibleAnywhere)
+	URadialForceComponent* ExplosionForce = nullptr;
+
 	UFUNCTION()  //Metodo per capire quando tocchiamo il terreno 
 	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 
