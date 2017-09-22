@@ -37,6 +37,20 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, U
 	LaunchBlast->Deactivate();
 	ImpactBlast->Activate();
 	ExplosionForce->FireImpulse();
+
+	//Quando colpisco qualcosa, setto come Rootl'ImpactBlast e distruggo il CollisionMesh per evitare che rimangano i proiettili 
+	//Il Prjectile_BP rimane
+	SetRootComponent(ImpactBlast);
+	CollisionMesh->DestroyComponent();
+
+	//Implemento un Timer, quando scade, il Projectile_BP viene distrutto
+	FTimerHandle TimerHandle;
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AProjectile::TimeEnd, DestroyDelay, false);
+}
+
+void AProjectile::TimeEnd()
+{
+	Destroy();
 }
 
 // Called when the game starts or when spawned

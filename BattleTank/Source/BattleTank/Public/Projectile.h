@@ -42,5 +42,8 @@ private:
 	UFUNCTION()  //Metodo per capire quando tocchiamo il terreno 
 	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 
-	
+	void TimeEnd();  //Chiamata col Delegate per distruggere il Projectile_BP
+
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	float DestroyDelay = 5.0;
 };
