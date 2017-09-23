@@ -9,8 +9,6 @@
 /**
  * 
  */
-
-
 UCLASS()
 class BATTLETANK_API ATankAIController : public AAIController
 {
@@ -20,8 +18,14 @@ private:
 
 	virtual void BeginPlay() override;
 
+	virtual void SetPawn(APawn* InPawn) override;  //Get called when the Pawn is possessed. 
+												   //When TankAIController gets possessed, this method gets called.
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	UFUNCTION()
+	void OnPossessedTankDeath();
 	
 protected:
 
