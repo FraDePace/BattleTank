@@ -37,6 +37,7 @@ void ATankPlayerController::SetPawn(APawn* InPawn)
 void ATankPlayerController::OnPossessedTankDeath()
 {
 	UE_LOG(LogTemp, Warning, TEXT("DTank Died"));
+	StartSpectatingOnly(); //Modalità spettatore
 }
 
 // Called every frame
